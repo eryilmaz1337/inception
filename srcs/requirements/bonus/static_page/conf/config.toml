@@ -1,0 +1,37 @@
+baseURL = 'http://gohugo.io/'
+languageCode = 'en-us'
+theme = "nightfall"
+
+[menu]
+  [[menu.header]]
+    name = "Post"
+    weight = 0
+    url = "posts"
+
+[params]
+author = "Erdem YILMAZ"
+user = "eryilmaz"
+#hostname = "42.fr"
+
+readingTime = true  # Show reading time on post page
+published = true  # Show published data on post page
+
+[[params.social]]
+key = 0
+name = "Github"
+url = "https://github.com/eryilmaz1337"
+
+[[params.social]]
+key = 1
+name = "Instagram"
+url = "https://www.instagram.com/erdemyilmaz.74"
+
+[[params.social]]
+key = 2
+name = "Linkedin"
+url = "https://www.linkedin.com/in/erdem-yilmaz-eryilmaz/"
+
+[[params.social]]
+key = 3
+name = "Email"
+url = "mailto:eryilmaz.1337@gmail.com"
