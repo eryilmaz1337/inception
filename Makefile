@@ -16,4 +16,5 @@ clean:
 	@docker rmi -f $$(docker images -q) # Kullanılmayan imajları siler
 clear:
 	@docker system prune -a -f
+
 .PHONY: all down re clean clear
