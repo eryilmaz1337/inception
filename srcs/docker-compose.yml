@@ -57,6 +57,7 @@ services:
     networks:
       - network
   adminer:
+    container_name: adminer
     build: ./requirements/bonus/adminer
     restart: always
     depends_on:
