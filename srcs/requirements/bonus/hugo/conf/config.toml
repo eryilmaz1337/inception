@@ -1,0 +1,7 @@
+baseURL = 'http://gohugo.io/'
+languageCode = 'en-us'
+theme = "nightfall"
+
+[params]
+author = "Bu sayfa hugo servisini test etmek için kurulmuştur"
+user = "eryilmaz"

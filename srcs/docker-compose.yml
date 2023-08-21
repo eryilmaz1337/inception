@@ -5,13 +5,13 @@ volumes:
     driver: local
     driver_opts:
       type: none
-      device: /home/data/mysql
+      device: /home/eryilmaz/data/mysql
       o: bind
   wordpress_data:
     driver: local
     driver_opts:
       type: none
-      device: /home/data/wordpress
+      device: /home/eryilmaz/data/wordpress
       o: bind
 
 networks:

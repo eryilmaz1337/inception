@@ -7,6 +7,10 @@ theme = "nightfall"
     name = "Post"
     weight = 0
     url = "posts"
+  [[menu.header]]
+    name = "About"
+    weight = 0
+    url = "about"
 
 [params]
 author = "Erdem YILMAZ"

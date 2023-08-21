@@ -1,4 +1,3 @@
-
 FROM debian:buster
 
 # Adminer'in sürümünü belirleyebilirsiniz, örneğin: 4.8.1
@@ -24,17 +23,6 @@ EXPOSE 9000
 
 ENV PATH="/usr/sbin/php-fpm7.3:$PATH"
 
-# Docker konteynerini başlattığınızda PHP-FPM hizmetinin otomatik olarak çalışmasını sağlar.
-#	Böylece, konteyner içindeki PHP uygulamaları düzgün şekilde işlenebilir.
-# "CMD [ "php-fpm7.3", "-F" ]" yapısı aynı işlemi gerçekleştirdiğinden dolayı bunu kullanmaya gerek kalmıyor.
-# Bu dizinin oluşması için: '/run/php/php7.3-fpm.sock'
-RUN service php7.3-fpm start
-
-COPY ./conf/www.conf /etc/php/7.3/fpm/pool.d/www_backup.conf
-
-# Kendimiz tarafından oluşturulan www.conf dosyasını test etmek için:
-# RUN rm -rf /etc/php/7.3/fpm/pool.d/www.conf
-
 RUN if [ -f /etc/php/7.3/fpm/pool.d/www.conf ]; then \
 		sed -i 's/^user = deploy$/user = www-data/' /etc/php/7.3/fpm/pool.d/www.conf && \
 		sed -i 's/^group = deploy$/group = www-data/' /etc/php/7.3/fpm/pool.d/www.conf && \
@@ -43,10 +31,13 @@ RUN if [ -f /etc/php/7.3/fpm/pool.d/www.conf ]; then \
 		sed -i 's/^listen.group = deploy$/listen.group = www-data/' /etc/php/7.3/fpm/pool.d/www.conf && \
 		sed -i 's/^;listen.mode = 0660$/listen.mode = 0660/' /etc/php/7.3/fpm/pool.d/www.conf && \
 		echo "Configuration updated." ; \
-	else \
-		cp /etc/php/7.3/fpm/pool.d/www_backup.conf /etc/php/7.3/fpm/pool.d/www.conf && \
-		echo "Configuration copied." ; \
 	fi
+
+# Docker konteynerini başlattığınızda PHP-FPM hizmetinin otomatik olarak çalışmasını sağlar.
+#	Böylece, konteyner içindeki PHP uygulamaları düzgün şekilde işlenebilir.
+# "CMD [ "php-fpm7.3", "-F" ]" yapısı aynı işlemi gerçekleştirdiğinden dolayı bunu kullanmaya gerek kalmıyor.
+# Bu dizinin oluşması için: '/run/php/php7.3-fpm.sock'
+RUN service php7.3-fpm start
 
 CMD ["php-fpm7.3", "-F"]
 
